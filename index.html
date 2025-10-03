@@ -24,7 +24,6 @@
         .sidebar {
             background: #2c3e50;
             color: white;
-            /* padding: 20px; */
             position: fixed;
             left: -250px;
             height: 100%;
@@ -46,20 +45,21 @@
             cursor: pointer;
         }
         .hamburger {
-    width: 50px;       /* fixed width */
-    height: 50px;      /* fixed height */
-    font-size: 28px;   /* size of hamburger/cross */
+    /* width: 50px;       fixed width */
+    /* height: 50px;      fixed height */
+    font-size: 20px;   /* size of hamburger/cross */
     font-weight: bold; /* cross will be bold */
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     position: fixed;
-    top: 15px;
+    top: 38px;
     left: 15px;
+    padding: 6px 10px;
     background: #2c3e50; /* default hamburger bg */
     color: white;
-    border-radius: 8px;
+    border-radius: 5px;
     z-index: 1000;
     box-shadow: 0 2px 5px rgba(0,0,0,0.3);
     transition: background 0.3s, transform 0.2s, font-size 0.2s;
@@ -69,6 +69,10 @@
     transform: scale(1.1);
 }
 
+.toggle-mode:hover {
+    background: #34495e;
+    transform: scale(1.1);
+}
         .main {
             flex: 1;
             padding: 20px;
@@ -110,6 +114,9 @@
             padding: 10px;
             border-radius: 5px;
             cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background 0.3s, transform 0.2s, font-size 0.2s;
+            z-index: 1000;
         }
     </style>
 </head>
@@ -119,7 +126,7 @@
 
     <div class="container">
         <div class="sidebar" id="sidebar">
-            <h2 id="iot-text">IoT</h2>
+            <h2 id="iot-text">Family Health</h2>
             <ul>
                 <li>📑➕ <a href="mom-medicine.html" style="text-decoration: none; color: inherit;">Mom's Health Record</a></li>
                 <li>📑➕ <a href="#" style="text-decoration: none; color: inherit;">Baba's Health Record</a></li>
