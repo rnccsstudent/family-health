@@ -46,17 +46,29 @@
             cursor: pointer;
         }
         .hamburger {
-            font-size: 20px;
-            cursor: pointer;
-            position: fixed;
-            top: 38px;
-            left: 15px;
-            background: #2c3e50;
-            color: white;
-            padding: 6px 10px;
-            border-radius: 5px;
-            z-index: 1000;
-        }
+    width: 50px;       /* fixed width */
+    height: 50px;      /* fixed height */
+    font-size: 28px;   /* size of hamburger/cross */
+    font-weight: bold; /* cross will be bold */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: #2c3e50; /* default hamburger bg */
+    color: white;
+    border-radius: 8px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: background 0.3s, transform 0.2s, font-size 0.2s;
+}
+.hamburger:hover {
+    background: #34495e;
+    transform: scale(1.1);
+}
+
         .main {
             flex: 1;
             padding: 20px;
@@ -165,17 +177,21 @@
         }
 
         function toggleMenu() {
-            let sidebar = document.getElementById("sidebar");
-            let hamburger = document.querySelector(".hamburger");
-            // sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
-            if (sidebar.style.left === "0px") {
+    let sidebar = document.getElementById("sidebar");
+    let hamburger = document.querySelector(".hamburger");
+    if (sidebar.style.left === "0px") {
         sidebar.style.left = "-250px";
-        hamburger.innerHTML = "&#9776;"; // Hamburger
+        hamburger.innerHTML = "&#9776;"; // hamburger ☰
+        hamburger.style.background = "#2c3e50";
+        hamburger.style.fontSize = "28px"; // default size
     } else {
         sidebar.style.left = "0px";
-        hamburger.innerHTML = "<strong>&times;</strong>"; // Cross (×)
+        hamburger.innerHTML = "&times;"; // cross ×
+        hamburger.style.background = "#e74c3c"; // noticeable bg
+        hamburger.style.fontSize = "32px"; // fit nicely inside box
     }
-        }
+}
+
 
         function toggleMode() {
             document.body.classList.toggle("dark-mode");
