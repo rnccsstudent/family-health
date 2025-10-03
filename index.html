@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Family-Health</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+            transition: background 0.3s, color 0.3s;
+        }
+        .dark-mode {
+            background: #1e1e1e;
+            color: #fff;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        .sidebar {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            left: -250px;
+            height: 100%;
+            transition: left 0.3s ease;
+            box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.2);
+        }
+        .sidebar h2 {
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold; 
+            margin: 30px 0;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 15px;
+            cursor: pointer;
+        }
+        .hamburger {
+            font-size: 20px;
+            cursor: pointer;
+            position: fixed;
+            top: 38px;
+            left: 15px;
+            background: #2c3e50;
+            color: white;
+            padding: 6px 10px;
+            border-radius: 5px;
+            z-index: 1000;
+        }
+        .main {
+            flex: 1;
+            padding: 20px;
+            width: 100%;
+            transition: margin-left 0.3s ease;
+        }
+        .search-bar {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 80%;
+            max-width: 500px;
+        }
+        .email-list {
+            list-style: none;
+            padding: 0;
+        }
+        .email-list li {
+            padding: 15px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+        }
+        .email-content {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ddd;
+        }
+        .dark-mode .email-content {
+            background: #333;
+            color: #fff;
+        }
+        .toggle-mode {
+            position: fixed;
+            top: 40px;
+            right: 15px;
+            background: #2c3e50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <span class="hamburger" onclick="toggleMenu()">&#9776;</span>
+    <span class="toggle-mode" onclick="toggleMode()">🌗</span>
+
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <h2 id="iot-text">IoT</h2>
+            <ul>
+                <li>📑➕ <a href="mom-medicine.html" style="text-decoration: none; color: inherit;">Mom's Health Record</a></li>
+                <li>📑➕ <a href="#" style="text-decoration: none; color: inherit;">Baba's Health Record</a></li>
+                <li>📑➕ <a href="#" style="text-decoration: none; color: inherit;">My Health Record</a></li>
+                <li>🎥 <a href="https://pranab.infinityfreeapp.com/" style="text-decoration: none; color: inherit;">Videos</a></li>
+            </ul>
+        </div>
+
+        <div class="main" id="mainContent">
+            <h2 style="text-align: center;">🏥Health Record❤️</h2>
+            <input type="text" class="search-bar" id="searchInput" placeholder="🔍 Search questions..." onkeyup="searchEmails()">
+            <ul class="email-list" id="emailList">
+                <li onclick="showEmail(0)" class="email-item">❓ Questions1: How can I maintain good health daily? (প্রতিদিন কীভাবে ভালো স্বাস্থ্য রাখা যায়?)</li>
+                <li onclick="showEmail(1)" class="email-item">❓ Questions2: Why is mental health important? (মানসিক স্বাস্থ্য কেন জরুরি?)</li>
+                <li onclick="showEmail(2)" class="email-item">❓ Questions3: How often should I go for a health check-up? (কতদিন পরপর স্বাস্থ্য পরীক্ষা করা উচিত?)</li>
+                <li onclick="showEmail(3)" class="email-item">❓ Questions4: What habits should I avoid for good health? (ভালো স্বাস্থ্যের জন্য কোন অভ্যাসগুলো এড়ানো উচিত?)</li>
+                <li onclick="showEmail(4)" class="email-item">❓ Questions5: How can I boost my immunity naturally? (প্রাকৃতিকভাবে রোগ প্রতিরোধ ক্ষমতা কীভাবে বাড়াবো?)</li>
+                <li onclick="showEmail(5)" class="email-item">❓ Questions6: What role does sleep play in good health? (ভালো স্বাস্থ্যের জন্য ঘুমের ভূমিকা কী?)</li>
+            </ul>
+            <div class="email-content" id="emailContent">
+                <button onclick="hideEmail()">🔙 Back</button>
+                <h3 id="emailSubject"></h3>
+                <p id="emailBody"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const emails = [
+            { subject: "How can I maintain good health daily?", body: "Balanced diet (শাকসবজি, ফল, প্রোটিন, শস্য)<br>Regular exercise (৩০ মিনিট হাঁটা/যোগা/জগিং)<br>Adequate sleep (৭–৮ ঘণ্টা)<br>Proper hydration (প্রতিদিন ২–৩ লিটার পানি)<br>Avoid junk food, alcohol & smoking" },
+            { subject: "Why is mental health important?", body: "Mental health affects thinking, decision-making, stress management, and relationships. Stress, anxiety, or depression untreated থাকলে শরীরের রোগ প্রতিরোধ ক্ষমতাও কমে যায়।" },
+            { subject: "How often should I go for a health check-up?", body: "Young adults (20–35 years): প্রতি ২ বছরে একবার<br>Adults (35–50 years): বছরে একবার<br>50+ years / chronic patient: বছরে একাধিকবার (doctor’s advice অনুযায়ী)" },
+            { subject: "What habits should I avoid for good health?", body: "Smoking & Alcohol<br>Excess sugar, oily, junk food<br>Overuse of mobile/computer at night (sleep disturbance)<br>Skipping breakfast<br>Sedentary lifestyle (ঘণ্টার পর ঘণ্টা বসে থাকা)" },
+            { subject: "How can I boost my immunity naturally?", body: "Eat vitamin-rich foods (Vit C – লেবু, কমলা; Vit D – sunlight; Zinc – nuts, seeds)<br>Daily exercise<br>Sufficient sleep<br>Reduce stress (meditation, hobbies, deep breathing)<br>Proper hygiene (হাত ধোয়া, পরিষ্কার-পরিচ্ছন্ন থাকা)" },
+            { subject: "What role does sleep play in good health?", body: "মস্তিষ্ক ও শরীরকে রিচার্জ করে<br>রোগ প্রতিরোধ ক্ষমতা বাড়ায়<br>স্মৃতি ও শেখার ক্ষমতা উন্নত করে<br>ঘুম কম হলে স্থূলতা, ডিপ্রেশন ও হৃদরোগের ঝুঁকি বাড়ে" }
+        ];
+
+        function showEmail(index) {
+            document.getElementById("emailSubject").innerText = emails[index].subject;
+            document.getElementById("emailBody").innerHTML = emails[index].body; // fixed innerHTML
+            document.getElementById("emailContent").style.display = "block";
+        }
+
+        function hideEmail() {
+            document.getElementById("emailContent").style.display = "none";
+        }
+
+        function searchEmails() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let items = document.querySelectorAll(".email-item");
+            items.forEach((item, index) => {
+                let combinedText = (emails[index].subject + emails[index].body).toLowerCase();
+                item.style.display = combinedText.includes(input) ? "block" : "none";
+            });
+        }
+
+        function toggleMenu() {
+            let sidebar = document.getElementById("sidebar");
+            sidebar.style.left = sidebar.style.left === "0px" ? "-250px" : "0px";
+        }
+
+        function toggleMode() {
+            document.body.classList.toggle("dark-mode");
+        }
+
+        // colorful IoT text
+        document.addEventListener("DOMContentLoaded", function () {
+            let textElement = document.getElementById("iot-text");
+            let text = textElement.innerText;
+            let colors = ["rgb(226, 88, 34)", "white", "green", "orange", "purple", "pink"];
+            let coloredText = "";
+        
+            for (let i = 0; i < text.length; i++) {
+                let color = colors[i % colors.length];
+                coloredText += `<span style="color: ${color};">${text[i]}</span>`;
+            }
+        
+            textElement.innerHTML = coloredText;
+        });
+    </script>
+</body>
+</html>
