@@ -572,19 +572,19 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
   // Scroll to Top Functionality
 const scrollTopBtn = document.getElementById("scrollTopBtn");
 
-// স্ক্রল হলে বোতাম দেখানো
-window.onscroll = function() {
-  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-    scrollTopBtn.style.display = "block";
-  } else {
-    scrollTopBtn.style.display = "none";
-  }
-};
+// স্ক্রল হলে বোতাম দেখানো বা লুকানো
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 200) {
+      scrollTopBtn.style.display = "block";
+    } else {
+      scrollTopBtn.style.display = "none";
+    }
+  });
 
-// বোতাম ক্লিক করলে উপরের দিকে স্ক্রল
-scrollTopBtn.addEventListener('click', function() {
-  window.scrollTo({top: 0, behavior: 'smooth'});
-});
+  // বোতাম ক্লিক করলে উপরের দিকে smooth scroll
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
 
 </script>
 
