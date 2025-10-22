@@ -89,6 +89,53 @@
       font-size: 15px;
       margin: 5px 0;
     }
+    /* 🔍 Fullscreen Viewer */
+    #imageViewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    #imageViewer img {
+      width: 95%;
+      max-height: 90%;
+      border-radius: 10px;
+      object-fit: contain;
+      animation: zoomIn 0.5s ease;
+    }
+    #imageViewer span {
+      position: absolute;
+      top: 10px;
+      right: 18px;
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* 🌈 Animation */
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.8);}
+      to {transform: scale(1);}
+    }
+
+    /* 📱 Mobile Focus */
+    @media (max-width:600px) {
+      h1 {font-size: 1.4em;}
+      .medicine-card {padding: 12px;}
+      h2 {font-size: 1.1em;}
+    }
   </style>
 </head>
 <body>
@@ -103,6 +150,8 @@
   <option value="all">All Doctors</option>
   <option value="Dr. Sushanta Kr. Mandal(Ranibandh)">Dr. Sushanta Kr. Mandal(Ranibandh)</option>
   <option value="Prescription">Prescription</option>
+  <option value="Dr. Ganesh Mahata(Ranibandh)">Dr. Ganesh Mahata(Ranibandh)</option>
+
 </select>
 
 <input type="text" id="searchBox" placeholder="ওষুধ খুঁজুন...">
@@ -112,7 +161,13 @@
   <!-- Date group 1 -->
   <div class="date-section">📅 10-02-2025 | Dr. Sushanta Kr. Mandal(Ranibandh)</div>
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="Rabitate-DRS.jpg" alt="Rabitate-DSR">
+
+    <img src="https://drive.google.com/thumbnail?id=1xwY5ymk5Vxhj4KgM1hn-hhi4u5Uq1mWg"
+     alt="Rabitate-DSR"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1xwY5ymk5Vxhj4KgM1hn-hhi4u5Uq1mWg/view', '_blank', 'noopener')">    
+
     <h2>Rabitate-DSR</h2>
     <p class="medicine-info"><b>কারণ:</b> এসিডিটি / গ্যাস</p>
     <p class="medicine-info"><b>কাজ:</b> পাকস্থলীতে অ্যাসিড কমায়</p>
@@ -126,7 +181,13 @@
 4. দীর্ঘদিন খেলে Vitamin B12, Magnesium কমে যেতে পারে।</p>
   </div>
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="VOMISTOP.jpg" alt="VOMISTOP">
+
+    <img src="https://drive.google.com/thumbnail?id=1iXyXo2hObWRbYuNnQ8tCUIMtMIrFjs3a"
+     alt="Rabitate-DSR"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1iXyXo2hObWRbYuNnQ8tCUIMtMIrFjs3a/view', '_blank', 'noopener')">    
+
     <h2>VOMISTOP</h2>
     <p class="medicine-info"><b>কারণ:</b> বমি ও অতিরিক্ত গ্যাস্ট্রিক ও ঢেঁকুর</p>
     <p class="medicine-info"><b>কাজ:</b> Domperidone মস্তিষ্কের বমি কেন্দ্রের (Chemo-receptor trigger zone) ডোপামিন রিসেপ্টর ব্লক করে → ফলে বমি বমি ভাব কমে।
@@ -142,7 +203,11 @@
 4. দীর্ঘদিন ব্যবহার করা নিরাপদ নয় (সাধারণত স্বল্পমেয়াদী সমস্যায় দেয়া হয়)।</p>
   </div>
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="DISODIUM-HYDROZEN-CITRATE-SYRUP.jpg" alt="DISODIUM-HYDROZEN-CITRATE-SYRUP">
+    <img src="https://drive.google.com/thumbnail?id=1vtshgbYUWwpX7Fa3u0zyCFPzEoDTPsmv"
+     alt="Disodium-Hydrogen-Citrate-Syrup"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1vtshgbYUWwpX7Fa3u0zyCFPzEoDTPsmv/view', '_blank', 'noopener')">
     <h2>Disodium Hydrogen Citrate Syrup</h2>
     <p class="medicine-info"><b>কারণ:</b> প্রস্রাবে জ্বালা</p>
     <p class="medicine-info"><b>কাজ:</b> ইউরিনে এসিড কমায়</p>
@@ -157,7 +222,11 @@
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="Cefixime-Ofloxacin.jpg" alt="Cefixime-Ofloxacin">
+    <img src="https://drive.google.com/thumbnail?id=1zoSxcL6mQtVCJ2_TxlOIZ_kRG7AoQB4O"
+     alt="Cefixime-Ofloxacin"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1zoSxcL6mQtVCJ2_TxlOIZ_kRG7AoQB4O/view', '_blank', 'noopener')">
     <h2>Cefixime-Ofloxacin Tablets</h2>
     <p class="medicine-info"><b>কারণ:</b> ব্যাকটেরিয়াল সংক্রমণ → যেমন ইউরিনারি ট্র্যাক্ট ইনফেকশন (UTI), গলার সংক্রমণ, কান/নাক/গলা সংক্রমণ, ব্রঙ্কাইটিস।</p>
     <p class="medicine-info"><b>কাজ:</b> Cefixime → ব্যাকটেরিয়ার Cell wall তৈরি বন্ধ করে → ব্যাকটেরিয়া মারা যায়।
@@ -176,7 +245,12 @@ Ofloxacin → ব্যাকটেরিয়ার DNA replication বন্�
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="semotil5.jpg" alt="semotil5">
+    <img src="https://drive.google.com/thumbnail?id=1QL75njQ97cOM8Afwp6sCR9lpJrUo0ZDN"
+     alt="Rabitate-DSR"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1QL75njQ97cOM8Afwp6sCR9lpJrUo0ZDN/view', '_blank', 'noopener')">    
+
     <h2>Semotil 5</h2>
     <p class="medicine-info"><b>কারণ:</b> বমি বা বমি বমি ভাব (Nausea & Vomiting)
 <br>
@@ -199,7 +273,12 @@ Prokinetic effect → খাবার দ্রুত পাকস্থলী �
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="Paracetamol500.jpg" alt="Paracetamol500">
+    <img src="https://drive.google.com/thumbnail?id=1ZfW5_03lSfERTE-ebVyTMU3yIUjuvxOS"
+     alt="Rabitate-DSR"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1ZfW5_03lSfERTE-ebVyTMU3yIUjuvxOS/view', '_blank', 'noopener')">    
+
     <h2>Paracetamol 500</h2>
     <p class="medicine-info"><b>কারণ:</b> জ্বর বা মাথা ব্যথা, পেট ব্যথা, মাসিক ব্যথা, দাঁতের ব্যথা, মাংসপেশীর ব্যথা</p>
     <p class="medicine-info"><b>কাজ:</b>Pain relief (Analgesic) → ব্যথার সিগনাল মস্তিষ্কে পৌঁছতে দেয় না।
@@ -218,7 +297,12 @@ Fever reducer (Antipyretic) → শরীরের তাপমাত্রা �
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="KOUGH-O-DIL.jpg" alt="KOUGH-O-DIL">
+    <img src="https://drive.google.com/thumbnail?id=1J-0c3-L_oEv86yecmfI_0Fx58TD1zND5"
+     alt="KOUGH-O-DIL"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1J-0c3-L_oEv86yecmfI_0Fx58TD1zND5/view', '_blank', 'noopener')">    
+
     <h2>KOUGH-O-DIL</h2>
     <p class="medicine-info"><b>কারণ:</b> কাশি (Cough) – শুকনো বা সর্দিকাশি সহ কাশি।
 <br>
@@ -243,7 +327,12 @@ Anti-allergic / Bronchodilator (যদি থাকে) → শ্বাসন�
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="DIGEN.jpg" alt="DIGEN">
+    <img src="https://drive.google.com/thumbnail?id=1eglO_K21B63V33ISFpP3NAEgKp7Ru48Z"
+     alt="DIGEN"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1eglO_K21B63V33ISFpP3NAEgKp7Ru48Z/view', '_blank', 'noopener')">    
+
     <h2>DIGEN</h2>
     <p class="medicine-info"><b>কারণ:</b> অতিরিক্ত অ্যাসিডিটি / বুক জ্বালা (Acidity / Heartburn)
 <br>
@@ -270,7 +359,12 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
   </div>
 
   <div class="medicine-card" data-doctor="Dr. Sushanta Kr. Mandal(Ranibandh)">
-    <img src="Nimlore-nimesulide.jpg" alt="Nimlore-nimesulide">
+    <img src="https://drive.google.com/thumbnail?id=1Dc2Jtuy5yriRoAr7csrVbfnoTCLbVSIy"
+     alt="Nimlore-Nimesulide"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1Dc2Jtuy5yriRoAr7csrVbfnoTCLbVSIy/view', '_blank', 'noopener')">    
+
     <h2>Nimlore(Nimesulide)</h2>
     <p class="medicine-info"><b>কারণ:</b> মাথা ব্যথা, দাঁতের ব্যথা, জয়েন্টে ব্যথা (Arthritis)
 <br>
@@ -298,7 +392,7 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
   <!-- Date group 2 -->
   <!-- <div class="date-section">📅 ১৫-০৯-২০২৫ | ডা. B</div>
   <div class="medicine-card" data-doctor="Dr.B"> -->
-    <!-- <img src="images/vomistop.jpg" alt="VOMISTOP">
+    <!-- <img src="https://drive.google.com/drive/folders/1JEnPPXB21w25MUeiaXtiY1BtmcJMc29I?usp=sharing" alt="VOMISTOP">
     <h2>VOMISTOP</h2>
     <p class="medicine-info"><b>কারণ:</b> বমি ভাব</p>
     <p class="medicine-info"><b>কাজ:</b> বমি থামায়</p>
@@ -308,13 +402,89 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
   <!-- Date group 3 -->
   <div class="date-section">📅 10-02-2025 | Prescription | Dr. Sushanta Kr. Mandal(Ranibandh)</div>
   <div class="medicine-card" data-doctor="Prescription">
-    <img src="SKM-Prescription.jpg" alt="VOMISTOP">
+    <img src="https://drive.google.com/thumbnail?id=151lSnlR5qKps-yPAOgHlEEgQcZjWDFVS"
+     alt="Prescription"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/151lSnlR5qKps-yPAOgHlEEgQcZjWDFVS/view', '_blank', 'noopener')">    
   </div>
 
+  <div class="date-section">📅 20-10-2025 | Dr. Ganesh Mahata(Ranibandh)</div>
+  <div class="medicine-card" data-doctor="Dr. Ganesh Mahata(Ranibandh)">
+    <img src="https://drive.google.com/thumbnail?id=1NTruEQwq6F8pAGrmfhIH-wuL7ZdBuThA"
+     alt="Wymox500mg"
+     loading="lazy"
+     style="cursor:pointer;"
+     onclick="window.open('https://drive.google.com/file/d/1NTruEQwq6F8pAGrmfhIH-wuL7ZdBuThA/view', '_blank', 'noopener')">    
+     <h2>Wymox 500mg (Amoxicillin)</h2>
+  <p class="medicine-info">
+    <b>কারণ:</b> ব্যাকটেরিয়া সংক্রমণ (Bacterial Infection) যেমন —<br>
+    🔹 গলা ব্যথা (Tonsillitis, Pharyngitis)<br>
+    🔹 কান ইনফেকশন (Otitis media)<br>
+    🔹 দাঁতের ইনফেকশন<br>
+    🔹 শ্বাসযন্ত্র, মূত্রনালী ও ত্বকের সংক্রমণ
+  </p>
+  <p class="medicine-info">
+    <b>কাজ:</b> Amoxicillin হলো Penicillin শ্রেণির একটি অ্যান্টিবায়োটিক।<br>
+    এটি ব্যাকটেরিয়ার সেল ওয়াল তৈরি বন্ধ করে →<br>
+    🔹 ব্যাকটেরিয়াকে মেরে ফেলে বা বৃদ্ধি রোধ করে।
+  </p>
+  <p class="medicine-info">
+    <b>সময়:</b> খাবারের আগে বা পরে দিনে ২-৩ বার (ডাক্তারের পরামর্শ অনুযায়ী)।
+  </p>
+  <p class="medicine-info">
+    <b>👉সতর্কতা:</b><br>
+    1. ভাইরাসজনিত জ্বর বা সর্দি-কাশিতে ব্যবহার করবেন না।<br>
+    2. যাদের Penicillin অ্যালার্জি আছে তারা এই ওষুধ খাবেন না।<br>
+    3. পুরো কোর্স শেষ না করলে ইনফেকশন ফিরে আসতে পারে।<br>
+    4. গর্ভবতী ও স্তন্যদানকারী মায়েদের ক্ষেত্রে চিকিৎসকের পরামর্শ প্রয়োজন।<br>
+    5. বমি, পেট ব্যথা, ডায়রিয়া বা ত্বকে ফুসকুড়ি হলে ওষুধ বন্ধ করে ডাক্তারকে জানান।
+  </p>
+</div>
+    
 
-
+   <div class="medicine-card" data-doctor="Dr. Ganesh Mahata(Ranibandh)">
+    <img 
+    src="https://drive.google.com/thumbnail?id=1cO1zrlYBsHZbwCq7d5wbjr33kgN0hVpR"
+    alt="LEMIX-M"
+    loading="lazy"
+    style="cursor:pointer;"
+    onclick="window.open('https://drive.google.com/file/d/1cO1zrlYBsHZbwCq7d5wbjr33kgN0hVpR/view', '_blank', 'noopener')">
+  <h2>LEMIX-M (Amoxicillin + Cloxacillin)</h2>
+  <p class="medicine-info">
+    <b>কারণ:</b> ব্যাকটেরিয়া সংক্রমণ (Bacterial Infection) যেমন —<br>
+    🔹 ত্বক ও নরম টিস্যুর ইনফেকশন<br>
+    🔹 শ্বাসযন্ত্রের সংক্রমণ (Tonsillitis, Bronchitis)<br>
+    🔹 কান ও গলার ইনফেকশন<br>
+    🔹 দাঁতের ইনফেকশন ও ক্ষতস্থানে ইনফেকশন
+  </p>
+  <p class="medicine-info">
+    <b>কাজ:</b> Lemix-M হলো দুইটি অ্যান্টিবায়োটিকের মিশ্রণ —<br>
+    🔹 <b>Amoxicillin</b> ব্যাকটেরিয়ার সেল ওয়াল তৈরির প্রক্রিয়া বন্ধ করে দেয়।<br>
+    🔹 <b>Cloxacillin</b> Penicillinase উৎপাদনকারী ব্যাকটেরিয়াকেও ধ্বংস করে।<br>
+    👉 ফলে এটি সাধারণ ও প্রতিরোধী দুই ধরনের ব্যাকটেরিয়ার বিরুদ্ধেই কার্যকর।
+  </p>
+  <p class="medicine-info">
+    <b>সময়:</b> খাবারের পরে দিনে ২-৩ বার (ডাক্তারের পরামর্শ অনুযায়ী)।
+  </p>
+  <p class="medicine-info">
+    <b>👉সতর্কতা:</b><br>
+    1. Penicillin অ্যালার্জি থাকলে এই ওষুধ খাবেন না।<br>
+    2. ভাইরাসজনিত জ্বর বা ঠান্ডা-কাশিতে এটি কার্যকর নয়।<br>
+    3. পুরো কোর্স সম্পূর্ণ করুন, না হলে ইনফেকশন ফিরে আসতে পারে।<br>
+    4. ডায়রিয়া, পেট ব্যথা, বমি বা ত্বকে ফুসকুড়ি হলে ওষুধ বন্ধ করুন এবং চিকিৎসকের পরামর্শ নিন।<br>
+    5. গর্ভবতী বা স্তন্যদানকারী মহিলারা শুধুমাত্র চিকিৎসকের নির্দেশে গ্রহণ করবেন।
+  </p>
 </div>
 
+    
+    
+    </div>
+<!-- 🔍 Fullscreen Image Viewer -->
+  <div id="imageViewer">
+    <span onclick="closeImage()">&times;</span>
+    <img id="viewerImg" src="">
+  </div>
 <script>
   // 🌙/☀️ Light-Dark Toggle
   const toggleBtn = document.getElementById("toggleMode");
@@ -352,6 +522,28 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
       }
     }
   });
+   // 🔍 Open fullscreen image
+    function openImage(img) {
+      const viewer = document.getElementById('imageViewer');
+      const viewerImg = document.getElementById('viewerImg');
+      viewerImg.src = img.src;
+      viewer.style.display = 'flex';
+    }
+
+    // ❌ Close fullscreen image
+    function closeImage() {
+      document.getElementById('imageViewer').style.display = 'none';
+    }
+
+    // 👆 Zoom with pinch on mobile
+    let scale = 1;
+    const viewerImg = document.getElementById('viewerImg');
+    viewerImg.addEventListener('wheel', e => {
+      e.preventDefault();
+      scale += e.deltaY * -0.01;
+      scale = Math.min(Math.max(.8, scale), 3);
+      viewerImg.style.transform = `scale(${scale})`;
+    });
 </script>
 
 </body>
