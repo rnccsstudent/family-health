@@ -115,6 +115,27 @@
       cursor: pointer;
       user-select: none;
     }
+    /* Scroll to Top Button Styles */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  font-size: 24px;
+  background: #4CAF50; /* চাইলে রঙ পরিবর্তন করতে পারেন */
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 10px 15px;
+  cursor: pointer;
+  display: none; /* শুরুতে লুকানো থাকবে */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  transition: 0.3s;
+}
+#scrollTopBtn:hover {
+  background: #45a049;
+}
+
 
     /* 🌈 Animation */
     @keyframes fadeUp {
@@ -485,6 +506,9 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
     <span onclick="closeImage()">&times;</span>
     <img id="viewerImg" src="">
   </div>
+  <!-- Scroll to Top Button -->
+<button id="scrollTopBtn" title="Go to top">⬆️</button>
+
 <script>
   // 🌙/☀️ Light-Dark Toggle
   const toggleBtn = document.getElementById("toggleMode");
@@ -544,6 +568,24 @@ Antispasmodic (যদি থাকে) → পেটের কুঁচকান
       scale = Math.min(Math.max(.8, scale), 3);
       viewerImg.style.transform = `scale(${scale})`;
     });
+
+  // Scroll to Top Functionality
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+// স্ক্রল হলে বোতাম দেখানো
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    scrollTopBtn.style.display = "block";
+  } else {
+    scrollTopBtn.style.display = "none";
+  }
+};
+
+// বোতাম ক্লিক করলে উপরের দিকে স্ক্রল
+scrollTopBtn.addEventListener('click', function() {
+  window.scrollTo({top: 0, behavior: 'smooth'});
+});
+
 </script>
 
 </body>
