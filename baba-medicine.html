@@ -401,7 +401,25 @@ Vitamin D3-এর অভাব পূরণ করে,
     document.body.classList.toggle("dark");
     toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
   });
+ function applyFilters() {
+  const searchText = searchBox.value.toLowerCase();
+  const selectedDoctor = doctorSelect.value;
 
+  for (let i = 0; i < cards.length; i++) {
+    const title = cards[i].getElementsByTagName("h2")[0].innerText.toLowerCase();
+    const doctor = cards[i].dataset.doctor.trim();
+
+    const matchSearch = title.includes(searchText);
+    const matchDoctor =
+      selectedDoctor === "all" || doctor === selectedDoctor;
+
+    if (matchSearch && matchDoctor) {
+      cards[i].style.display = "";
+    } else {
+      cards[i].style.display = "none";
+    }
+  }
+}
   // 🔍 Search filter
   const searchBox = document.getElementById('searchBox');
   const medicineList = document.getElementById('medicineList');
@@ -422,9 +440,6 @@ const doctorSelect = document.getElementById('doctorSelect');
   // 👨‍⚕️ Doctor filter
   doctorSelect.addEventListener('change', function () {
   const selectedDoctor = doctorSelect.value;
-
-  // 🔴 FIX: search reset
-  searchBox.value = "";
 
   for (let i = 0; i < cards.length; i++) {
     if (
