@@ -401,77 +401,91 @@ Vitamin D3-এর অভাব পূরণ করে,
     document.body.classList.toggle("dark");
     toggleBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
   });
- // 🔍 Elements (ALWAYS FIRST)
-const searchBox = document.getElementById('searchBox');
-const medicineList = document.getElementById('medicineList');
-const cards = medicineList.getElementsByClassName('medicine-card');
-const doctorSelect = document.getElementById('doctorSelect');
 
-// 🔁 Unified filter function
-function applyFilters() {
-  const searchText = searchBox.value.toLowerCase();
-  const selectedDoctor = doctorSelect.value;
+  // 🔍 Elements (ALWAYS FIRST)
+  const searchBox = document.getElementById('searchBox');
+  const medicineList = document.getElementById('medicineList');
+  const cards = medicineList.getElementsByClassName('medicine-card');
+  const doctorSelect = document.getElementById('doctorSelect');
 
-  for (let i = 0; i < cards.length; i++) {
-    const title = cards[i]
-      .getElementsByTagName("h2")[0]
-      .innerText.toLowerCase();
+  // 🔁 Unified filter function
+  function applyFilters() {
+    const searchText = searchBox.value.toLowerCase();
+    const selectedDoctor = doctorSelect.value;
 
-    const doctor = cards[i].dataset.doctor.trim();
+    // 🎯 Filter medicine cards
+    for (let i = 0; i < cards.length; i++) {
+      const title = cards[i]
+        .getElementsByTagName("h2")[0]
+        .innerText.toLowerCase();
 
-    const matchSearch = title.includes(searchText);
-    const matchDoctor =
-      selectedDoctor === "all" || doctor === selectedDoctor;
+      const doctor = cards[i].dataset.doctor.trim();
 
-    cards[i].style.display =
-      matchSearch && matchDoctor ? "" : "none";
+      const matchSearch = title.includes(searchText);
+      const matchDoctor =
+        selectedDoctor === "all" || doctor === selectedDoctor;
+
+      cards[i].style.display =
+        matchSearch && matchDoctor ? "" : "none";
+    }
+
+    // 🗓️ Hide date-section if no visible medicine under it
+    const dateSections = document.getElementsByClassName('date-section');
+
+    for (let d = 0; d < dateSections.length; d++) {
+      let next = dateSections[d].nextElementSibling;
+      let hasVisible = false;
+
+      while (next && !next.classList.contains('date-section')) {
+        if (next.style.display !== "none") {
+          hasVisible = true;
+          break;
+        }
+        next = next.nextElementSibling;
+      }
+
+      dateSections[d].style.display = hasVisible ? "" : "none";
+    }
   }
-}
 
-// 🎯 Events
-searchBox.addEventListener('keyup', applyFilters);
-doctorSelect.addEventListener('change', applyFilters);
-  
-   // 🔍 Open fullscreen image
-    function openImage(img) {
-      const viewer = document.getElementById('imageViewer');
-      const viewerImg = document.getElementById('viewerImg');
-      viewerImg.src = img.src;
-      viewer.style.display = 'flex';
-    }
+  // 🎯 Events
+  searchBox.addEventListener('keyup', applyFilters);
+  doctorSelect.addEventListener('change', applyFilters);
 
-    // ❌ Close fullscreen image
-    function closeImage() {
-      document.getElementById('imageViewer').style.display = 'none';
-    }
-
-    // 👆 Zoom with pinch on mobile
-    let scale = 1;
+  // 🔍 Open fullscreen image
+  function openImage(img) {
+    const viewer = document.getElementById('imageViewer');
     const viewerImg = document.getElementById('viewerImg');
-    viewerImg.addEventListener('wheel', e => {
-      e.preventDefault();
-      scale += e.deltaY * -0.01;
-      scale = Math.min(Math.max(.8, scale), 3);
-      viewerImg.style.transform = `scale(${scale})`;
-    });
+    viewerImg.src = img.src;
+    viewer.style.display = 'flex';
+  }
 
-  // Scroll to Top Functionality
-const scrollTopBtn = document.getElementById("scrollTopBtn");
+  // ❌ Close fullscreen image
+  function closeImage() {
+    document.getElementById('imageViewer').style.display = 'none';
+  }
 
-// স্ক্রল হলে বোতাম দেখানো বা লুকানো
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 200) {
-      scrollTopBtn.style.display = "block";
-    } else {
-      scrollTopBtn.style.display = "none";
-    }
+  // 👆 Zoom with mouse / pinch
+  let scale = 1;
+  const viewerImg = document.getElementById('viewerImg');
+  viewerImg.addEventListener('wheel', e => {
+    e.preventDefault();
+    scale += e.deltaY * -0.01;
+    scale = Math.min(Math.max(.8, scale), 3);
+    viewerImg.style.transform = `scale(${scale})`;
   });
 
-  // বোতাম ক্লিক করলে উপরের দিকে smooth scroll
+  // ⬆️ Scroll to Top
+  const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.style.display =
+      window.scrollY > 200 ? "block" : "none";
+  });
+
   scrollTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
-
 </script>
 
 </body>
