@@ -425,33 +425,7 @@ Vitamin D3-এর অভাব পূরণ করে,
   const medicineList = document.getElementById('medicineList');
   const cards = medicineList.getElementsByClassName('medicine-card');
 const doctorSelect = document.getElementById('doctorSelect');
-  searchBox.addEventListener('keyup', function() {
-    const filter = searchBox.value.toLowerCase();
-    for (let i = 0; i < cards.length; i++) {
-      let title = cards[i].getElementsByTagName("h2")[0];
-      if (title.innerText.toLowerCase().indexOf(filter) > -1) {
-        cards[i].style.display = "";
-      } else {
-        cards[i].style.display = "none";
-      }
-    }
-  });
-
-  // 👨‍⚕️ Doctor filter
-  doctorSelect.addEventListener('change', function () {
-  const selectedDoctor = doctorSelect.value;
-
-  for (let i = 0; i < cards.length; i++) {
-    if (
-      selectedDoctor === "all" ||
-      cards[i].dataset.doctor.trim() === selectedDoctor.trim()
-    ) {
-      cards[i].style.display = "";
-    } else {
-      cards[i].style.display = "none";
-    }
-  }
-});
+  
    // 🔍 Open fullscreen image
     function openImage(img) {
       const viewer = document.getElementById('imageViewer');
