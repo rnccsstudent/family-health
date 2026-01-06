@@ -406,7 +406,7 @@ Vitamin D3-এর অভাব পূরণ করে,
   const searchBox = document.getElementById('searchBox');
   const medicineList = document.getElementById('medicineList');
   const cards = medicineList.getElementsByClassName('medicine-card');
-
+const doctorSelect = document.getElementById('doctorSelect');
   searchBox.addEventListener('keyup', function() {
     const filter = searchBox.value.toLowerCase();
     for (let i = 0; i < cards.length; i++) {
