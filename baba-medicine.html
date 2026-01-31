@@ -621,7 +621,10 @@ Vitamin D3-এর অভাব পূরণ করে,
          loading="lazy" 
          style="cursor:pointer;"      onclick="window.open('https://drive.google.com/file/d/1eJ1oBdVHaC7hDKy1KXCEWuEG4X9-7aET/view', '_blank', 'noopener')">   
 </div>
+
     </div>
+
+
 <!-- 🔍 Fullscreen Image Viewer -->
   <div id="imageViewer">
     <span onclick="closeImage()">&times;</span>
@@ -644,45 +647,55 @@ Vitamin D3-এর অভাব পূরণ করে,
   const cards = medicineList.getElementsByClassName('medicine-card');
   const doctorSelect = document.getElementById('doctorSelect');
 
-  // 🔁 Unified filter function
   function applyFilters() {
-    const searchText = searchBox.value.toLowerCase();
-    const selectedDoctor = doctorSelect.value;
+  const searchText = searchBox.value.toLowerCase().trim();
+  const selectedDoctor = doctorSelect.value.trim().toLowerCase();
 
-    // 🎯 Filter medicine cards
-    for (let i = 0; i < cards.length; i++) {
-      const title = cards[i]
-        .getElementsByTagName("h2")[0]
-        .innerText.toLowerCase();
+  for (let i = 0; i < cards.length; i++) {
+    const card = cards[i];
 
-      const doctor = cards[i].dataset.doctor.trim();
+    // get title safely
+    const titleEl = card.getElementsByTagName("h2")[0];
+    const titleText = titleEl ? titleEl.innerText.toLowerCase() : "";
 
-      const matchSearch = title.includes(searchText);
-      const matchDoctor =
-        selectedDoctor === "all" || doctor === selectedDoctor;
+    const doctor = (card.dataset.doctor || "").toLowerCase().trim();
 
-      cards[i].style.display =
-        matchSearch && matchDoctor ? "" : "none";
+    // search filter
+    const matchSearch = titleText.includes(searchText);
+
+    // doctor filter
+    let matchDoctor = false;
+
+    if (selectedDoctor === "all") {
+      matchDoctor = true;
+    } else {
+      matchDoctor = doctor === selectedDoctor;
     }
 
-    // 🗓️ Hide date-section if no visible medicine under it
-    const dateSections = document.getElementsByClassName('date-section');
-
-    for (let d = 0; d < dateSections.length; d++) {
-      let next = dateSections[d].nextElementSibling;
-      let hasVisible = false;
-
-      while (next && !next.classList.contains('date-section')) {
-        if (next.style.display !== "none") {
-          hasVisible = true;
-          break;
-        }
-        next = next.nextElementSibling;
-      }
-
-      dateSections[d].style.display = hasVisible ? "" : "none";
-    }
+    // final visibility
+    card.style.display = (matchSearch && matchDoctor) ? "" : "none";
   }
+
+  // date-section hiding logic
+  const dateSections = document.getElementsByClassName("date-section");
+
+  for (let d = 0; d < dateSections.length; d++) {
+    let next = dateSections[d].nextElementSibling;
+    let hasVisible = false;
+
+    while (next && !next.classList.contains("date-section")) {
+      if (next.style.display !== "none") {
+        hasVisible = true;
+        break;
+      }
+      next = next.nextElementSibling;
+    }
+
+    dateSections[d].style.display = hasVisible ? "" : "none";
+  }
+}
+
+
 
   // 🎯 Events
   searchBox.addEventListener('keyup', applyFilters);
